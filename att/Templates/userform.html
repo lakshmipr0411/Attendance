@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance Page</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#f4f4f4;
+    text-align:center;
+}
+
+table{
+    margin:auto;
+    border-collapse:collapse;
+    width:60%;
+    background:white;
+}
+
+th,td{
+    padding:10px;
+    border:1px solid #ddd;
+}
+
+th{
+    background:#28a745;
+    color:white;
+}
+
+button{
+    padding:8px 15px;
+    background:#28a745;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#218838;
+}
+</style>
+
+</head>
+<body>
+<div style="text-align:right; margin:20px;">
+        {% csrf_token %}
+        <a href = "/login"><button style="background:red;">Logout</button> </a>
+  </div> </div> <br><br>
+<h2>Member Attendance</h2>
+
+<table>
+<tr>
+<th>Name</th>
+<th>Mobile</th>
+<th>Email</th>
+<th>Address</th>
+<th>Action</th>
+</tr>
+
+{% for p in i %}
+<tr>
+<td>{{p.1}}</td>
+<td>{{p.2}}</td>
+<td>{{p.3}}</td>
+<td>{{p.4}}</td>
+
+<td>
+<form method="post" action="/registerattendance">
+{% csrf_token %}
+
+<input type="hidden" name="mid" value="{{p.0}}">
+
+    <a href="/registerattendance?mid={{p.0}}"><button type="submit">Mark Attendance</button></a>
+
+</form>
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+<table>
+
+<h2> Attendance Details</h2>
+
+<table>
+<tr>
+<th>Date</th>
+<th>Time</th>
+
+</tr>
+
+{% for p in x %}
+<tr>
+
+<td>{{p.4}}</td>
+<td>{{p.5}}</td>
+
+</tr>
+    {% endfor %}
+</table>
+<script>
+     var msg = "{{msg}}"
+        if (msg != " " )
+        alert(msg)
+</script>
+</body>
+</html>

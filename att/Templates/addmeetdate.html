@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Meeting Date</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, sans-serif;
+    background:#eef2f7;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Card */
+.container{
+    background:white;
+    padding:30px;
+    border-radius:8px;
+    width:350px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+.container h2{
+    text-align:center;
+    color:#2c3e50;
+    margin-bottom:20px;
+}
+
+/* Input */
+.input-box{
+    margin-bottom:15px;
+}
+
+.input-box label{
+    font-size:14px;
+    color:#555;
+}
+
+.input-box input{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.input-box input:focus{
+    border-color:#007bff;
+    outline:none;
+    box-shadow:0 0 5px rgba(0,123,255,0.2);
+}
+
+/* Button */
+.btn{
+    width:100%;
+    padding:10px;
+    background:#007bff;
+    border:none;
+    color:white;
+    font-size:16px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#0056b3;
+}
+
+/* Back link */
+.back{
+    text-align:center;
+    margin-top:15px;
+}
+
+.back a{
+    color:#007bff;
+    text-decoration:none;
+}
+
+.back a:hover{
+    text-decoration:underline;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Add Meeting Date</h2>
+
+    <form method="post" action="">
+        {% csrf_token %}
+
+        <div class="input-box">
+            <label>Meeting Date</label>
+            <!-- ✅ Added id -->
+            <input type="date" id="mdate" name="mdate" required>
+        </div>
+
+        <input type="submit" value="Save Meeting" class="btn">
+    </form>
+
+    <div class="back">
+        <a href="/admin">← Back to Dashboard</a>
+    </div>
+</div>
+
+<script>
+    // ✅ Show Django message
+    var msg = "{{msg}}"
+    if (msg && msg.trim() !== "") {
+        alert(msg)
+    }
+
+    // ✅ Date Validation (No past dates)
+    let today = new Date().toISOString().split('T')[0];
+    let input = document.getElementById("mdate");
+
+    input.min = today;     // disable past dates
+    // input.value = today;   // auto-select today
+</script>
+
+</body>
+</html>
