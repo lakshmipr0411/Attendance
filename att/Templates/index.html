@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <Form action= "" method="post">
+        {% csrf_token %}
+      Name: <input type="text" name="name" required><br/><br/>
+     Mobile Number:<input type="tel" name="mob" pattern="[0-9]{8}" ><br/><br/>
+     Gender:<input type="radio"  name="gender" value="Male">Male
+            <input type="radio"  name="gender" value="Female">Female<br/><br/>
+     Email <input type="email" name ="email"><br/><br/>
+     Location <input type ="text" name="Location"><br/><br/>
+<input type="submit" value="Register">
+<a href="/login">login</a>>
+    </Form>
+    <script>
+        var msg = "{{msg}}"
+        if (msg != " " )
+        alert(msg)
+    </script>
+</body>
+</html>
